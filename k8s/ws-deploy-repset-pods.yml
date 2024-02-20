@@ -1,0 +1,32 @@
+#########################################################
+#                Wallet Service Application             #
+# Deployments, Replica Sets and Pods on K8S environment #
+#########################################################
+
+apiVersion:                   apps/v1
+kind:                         Deployment
+
+metadata:
+  name:                       viso-wallet-deploy-pod
+
+spec:
+  selector:
+    matchLabels:
+      # Replica Set
+      app:                    viso-wallet-pod
+
+  replicas:                   2
+
+  # auto-generated pods using pod definition in this template
+  template:
+    metadata:
+      labels:
+        # auto-generated pods names
+        app:                  viso-wallet-pod
+
+    spec:
+      containers:
+        - name:               viso-walletservice
+          image:              longlethanh/viso-walletservice:0.0.1-SNAPSHOT
+          ports:
+            - containerPort:  8880

@@ -1,0 +1,20 @@
+################################################################
+#    Global SERVICE exposed to outside via K8S Master Node     #
+#  kubectl port-forward service/viso-wallet-service 7080:8880  #
+################################################################
+
+apiVersion:       v1
+kind:             Service
+
+metadata:
+  name:           viso-wallet-service
+
+spec:
+  selector:
+    app:          viso-wallet-pod
+
+  type:           NodePort
+
+  ports:
+    - port:       8880
+      targetPort: 8880
